@@ -11,7 +11,7 @@ h1 {
 
 .cardButton {
     background-color: rgb(126, 126, 172);
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
@@ -22,6 +22,10 @@ h1 {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    cursor: pointer;
+    color: white;
+}
+
+.cardButton:hover {
+    background-color: rgb(91, 91, 171);
     color: white;
 }
