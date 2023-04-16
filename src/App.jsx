@@ -1,15 +1,34 @@
-import { useState } from 'react';
-
-import './App.css';
+import { useState, useEffect } from 'react';
+import StarshipCard from './StarshipCard';
+import { GetAllStarships } from './Services/sw-api';
 
 function App() {
-	const [ count, setCount ] = useState(0);
+	const [ starships, setStarships ] = useState(null);
+
+	useEffect(
+		() => {
+			console.log(starships);
+		},
+		[]
+	);
+
+	function ifExists() {
+		if (starships === null) {
+			GetAllStarships().then((data) => {
+				setStarships(data);
+			});
+		}
+	}
 
 	return (
-		<div className="App">
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-			</div>
+		<div>
+			{starships ? 
+				starships.results.map((item, index) => {
+					return <StarshipCard key ={index} cards={item} />;
+				})
+			: 
+				ifExists()
+			}
 		</div>
 	);
 }
